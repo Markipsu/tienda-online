@@ -1,5 +1,6 @@
 package es.spring.trabajo.controllers;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +71,8 @@ public class ProductoRestController {
 	@PostMapping("/productos")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseEntity<?> create(@Valid @RequestBody Producto producto, BindingResult result) {
+		Collection<?> coll =  producto.getVendedor().getAuthorities();
+		System.out.println(coll.size());
 		Map<String, Object> response = new HashMap<>();
 		Producto producto2 = null;
 		if (result.hasErrors()) {
@@ -79,12 +82,12 @@ public class ProductoRestController {
 			response.put("errors", errors);
 			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		}
-
+		
 		try {
 			producto2 = productoService.save(producto);
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error en la bbdd al crear");
-			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+			response.put("errors", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
