@@ -1,0 +1,56 @@
+<ul class="alert alert-danger" *ngIf="errores.length>0 ">
+    <li *ngFor="let error of errores">
+        {{error}}
+    </li>
+</ul>
+<div class="card bg-dark text-white my-2">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+        <form #productoForm="ngForm">
+            <div class="form-group row my-2 py-2">
+                <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="producto.nombre" name="nombre">
+                </div>
+            </div>
+            <div class="form-group row my-2 py-2">
+                <label for="apellido" class="col-form-label col-sm-2">Descripcion</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="producto.descripcion" name="descripcion">
+
+                </div>
+            </div>
+            <div class="form-group row my-2 py-2">
+                <label for="email" class="col-form-label col-sm-2">Precio</label>
+                <div class="col-sm-6">
+                    <input type="email"  class="form-control" [(ngModel)]="producto.precio" name="precio" required>
+
+                </div>
+            </div>
+        <!--
+            <div class="form-group row my-2 ">
+                <label for="createAt" class="col-form-label col-sm-2">Fecha</label>
+                <div class="col-sm-6">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input class="form-control" matInput [matDatepicker]="picker" [(ngModel)]="producto.createAt"
+                            name="createAt">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        -->
+        
+            <div class="form-group row my-2">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!producto.id else elseBlock">Crear</button>
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" (click)="update()">Editar</button>
+                    </ng-template>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
