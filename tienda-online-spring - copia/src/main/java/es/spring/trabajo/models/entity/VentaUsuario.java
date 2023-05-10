@@ -1,9 +1,5 @@
 package es.spring.trabajo.models.entity;
 
-import java.util.Set;
-
-import org.hibernate.annotations.OptimisticLock;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -16,21 +12,20 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "venta_producto")
+@Table(name = "venta_usuario")
 @Data
-public class VentaProducto {
-
+public class VentaUsuario {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idventa_producto")
+	@Column(name = "idventa_usuario")
     private Long ventaProductoId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_venta")
-    private Venta ventas;
+    private Venta venta;
 
     @ManyToOne
-    @JoinColumn(name = "id_producto")
-    private Producto productos;
+    @JoinColumn(name = "id_vendedor")
+    private Usuario vendedor;
 	
 }

@@ -54,6 +54,9 @@ public class Usuario implements UserDetails{
     private String username;
     
     private boolean enabled = true;
+    
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "vendedor")
+	private Set<VentaUsuario> ventasVendedores;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario")
     @JsonIgnore

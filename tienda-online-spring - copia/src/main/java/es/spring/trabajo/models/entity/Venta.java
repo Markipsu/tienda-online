@@ -34,9 +34,8 @@ public class Venta {
 	@Column(name = "fecha_venta")
 	private Date fechaVenta;
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn(name = "vendedor_id")
-	private Usuario vendedor;
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "venta")
+	private Set<VentaUsuario> ventasVendedores;
 	
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "comprador_id")
