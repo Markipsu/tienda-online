@@ -5,6 +5,7 @@ import swal from 'sweetalert2'
 import { tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from './detalle/modal.service';
+import { LoginService } from '../login/login.service';
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
@@ -18,10 +19,10 @@ export class ProductosComponent {
 
   constructor(private productoService: ProductoService,
     private activatedRoute: ActivatedRoute,
-    private modalService: ModalService) { }
+    private modalService: ModalService,
+    public login:LoginService) { }
 
   ngOnInit() {
-
     this.activatedRoute.paramMap.subscribe(params => {
       let page: string | null;
       let pageN: number;
@@ -80,4 +81,6 @@ export class ProductosComponent {
     this.productoSeleccionado = producto;
     this.modalService.abrirModal();
   }
+
+  
 }

@@ -7,7 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ProductoService } from './productos/producto.service';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormComponent } from './productos/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginatorComponent } from './paginator/paginator.component';
@@ -30,6 +30,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { AdminGuard } from './admin/admin.guard';
 import { UserGuard } from './user/user.guard';
+import { ServerErrorInterceptor } from './errors/ErrorInterceptor';
 
 registerLocaleData(localeES, 'es')
 const routes: Routes = [
@@ -77,6 +78,7 @@ const routes: Routes = [
   providers: [
     ProductoService,
     authInterceptorProviders,
+    { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

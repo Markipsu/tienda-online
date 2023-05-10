@@ -4,7 +4,7 @@
     <div class="card-body text-primary">
         <h5 class="card-title">Lista de productos</h5>
         <div class="my-2 text-left">
-            <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/productos/form']">Crear
+            <button class="btn btn-rounded btn-primary" *ngIf="login.isLoggedIn()" type="button" [routerLink]="['/productos/form']">Crear
                 producto</button>
         </div>
         <ng-template #noTable>
@@ -17,9 +17,9 @@
                 <tr>
                     <th>Foto</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Creado</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Vendedor</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -39,12 +39,11 @@
                     <td>{{producto.descripcion}}</td>
                     <td>{{producto.precio}}</td>
                     <td>{{producto.vendedor.username}}</td>
-                    
                     <td>
-                        <button class="btn btn-primary" [routerLink]="['/productos/form',producto.id]">Editar</button>
+                        <button class="btn btn-primary" *ngIf="login.isLoggedIn()&&producto.vendedor.username==login.getUser().username" [routerLink]="['/productos/form',producto.id]">Editar</button>
                     </td>
                     <td>
-                        <button class="btn btn-danger" (click)="delete(producto)">Eliminar</button>
+                        <button class="btn btn-danger" *ngIf="login.isLoggedIn()&&producto.vendedor.username==login.getUser().username" (click)="delete(producto)">Eliminar</button>
                     </td>
                 </tr>
             </tbody>
