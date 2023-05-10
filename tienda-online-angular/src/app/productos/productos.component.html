@@ -38,6 +38,7 @@
                     <td>{{producto.nombre}}</td>
                     <td>{{producto.descripcion}}</td>
                     <td>{{producto.precio}}</td>
+                    <td>{{producto.vendedor.username}}</td>
                     
                     <td>
                         <button class="btn btn-primary" [routerLink]="['/productos/form',producto.id]">Editar</button>

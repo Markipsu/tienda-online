@@ -54,6 +54,8 @@ export class FormComponent {
       },
       complete: () => { }
     }
+    console.log(this.login.getUser());
+    console.log(localStorage.getItem('user'));
     this.producto.vendedor=this.login.getUser();
     this.productoService.create(this.producto).subscribe(observer)
   }
