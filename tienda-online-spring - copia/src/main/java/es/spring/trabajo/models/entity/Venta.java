@@ -14,6 +14,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -34,15 +36,16 @@ public class Venta {
 	@Column(name = "fecha_venta")
 	private Date fechaVenta;
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "venta")
-	private Set<VentaUsuario> ventasVendedores;
+	@ManyToMany(mappedBy = "ventas")
+	@JsonIgnore
+	private Set<Usuario> vendedores;
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "comprador_id")
 	private Usuario comprador;
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "ventas")
-    @JsonIgnore
-    private Set<VentaProducto> ventaProductos = new HashSet<>();
+	@ManyToMany(mappedBy = "ventas")
+	@JsonIgnore
+    private Set<Producto> productos;
 
 }

@@ -3,6 +3,8 @@ package es.spring.trabajo.models.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,6 +33,7 @@ public class Rol {
     private String nombre;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "rol")
+    @JsonIgnore
     private Set<UsuarioRol> usuarioRoles = new HashSet<>();
 
   

@@ -23,7 +23,14 @@
             <div class="form-group row my-2 py-2">
                 <label for="email" class="col-form-label col-sm-2">Precio</label>
                 <div class="col-sm-6">
-                    <input type="email"  class="form-control" [(ngModel)]="producto.precio" name="precio" required>
+                    <input type="text"  class="form-control" [(ngModel)]="producto.precio" name="precio" required>
+
+                </div>
+            </div>
+            <div class="form-group row my-2 py-2">
+                <label for="email" class="col-form-label col-sm-2">Cantidad</label>
+                <div class="col-sm-6">
+                    <input type="text"  class="form-control" [(ngModel)]="producto.cantidad" name="cantidad" required>
 
                 </div>
             </div>

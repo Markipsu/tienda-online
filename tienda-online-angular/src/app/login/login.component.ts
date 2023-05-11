@@ -24,17 +24,18 @@ export class LoginComponent {
   public login(): void {
     let observer: Observer<any> = {
       next: (json) => {
-        Swal.fire('Usuario logueado', `usuario logueado con éxito!`, 'success')
         this.loginService.loginUser(json.token);
         this.loginService.getCurrentUser().subscribe(user=>{
           this.loginService.setUser(user);
           console.log(user)
           if(this.loginService.getUserRole()=='ADMIN'){
-            window.location.href = '/admin';
+            this.router.navigate(['/admin']);
             this.loginService.loginStatusSubject.next(true);
+            Swal.fire('Usuario logueado', `usuario logueado con éxito!`, 'success')
           }else if(this.loginService.getUserRole()=='USER'){
-            window.location.href = '/user-dashboard';
+            this.router.navigate(['/user-dashboard']);
             this.loginService.loginStatusSubject.next(true);
+            Swal.fire('Usuario logueado', `usuario logueado con éxito!`, 'success')
           }else{
             this.loginService.logout();
           }

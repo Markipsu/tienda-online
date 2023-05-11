@@ -18,14 +18,25 @@
          
         </ul>
         <ul class="navbar-nav me-2 mb-auto mb-lg-0">
-          <li class="nav-item" routerLinkActive="active" *ngIf="!loginService.isLoggedIn()">
+          <li class="nav-item mx-3" routerLinkActive="active" *ngIf="!loginService.isLoggedIn()">
             <a class="btn btn-primary" aria-current="page" [routerLink]="'/login'">Login</a>
           </li>
           <li class="nav-item" routerLinkActive="active" *ngIf="!loginService.isLoggedIn()">
             <a class="btn btn-primary" aria-current="page" [routerLink]="'/signup'">Registrarse</a>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="loginService.isLoggedIn()">
-            <a class="btn btn-primary" aria-current="page" (click)="logout()">Cerrar Sesion</a>
+          
+        </ul>
+        <ul class="navbar-nav me-2 mb-auto mb-lg-0">
+          <li class="nav-item dropdown" *ngIf="loginService.isLoggedIn()">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Bienvenido 
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="btn dropdown-item" (click)="logout()">Cerrar Sesion</a></li>
+            </ul>
           </li>
         </ul>
       </div>

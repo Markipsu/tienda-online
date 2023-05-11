@@ -35,9 +35,9 @@ import jakarta.validation.Valid;
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
 @RequestMapping
-public class ProductoRestController {
+public class ProductoController {
 
-	private final Logger log = LoggerFactory.getLogger(ProductoRestController.class);
+	private final Logger log = LoggerFactory.getLogger(ProductoController.class);
 
 	@Autowired
 	private ProductoService productoService;
@@ -122,6 +122,7 @@ public class ProductoRestController {
 			producto2.setImagen(producto.getImagen());
 			producto2.setNombre(producto.getNombre());
 			producto2.setPrecio(producto.getPrecio());
+			producto2.setCantidad(producto.getCantidad());
 			producto3 = productoService.save(producto2);
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error en la bbdd al actualizar");
@@ -138,7 +139,6 @@ public class ProductoRestController {
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		Map<String, Object> response = new HashMap<>();
 		try {
-			
 			productoService.delete(id);
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error en la bbdd al eliminar");
@@ -149,9 +149,6 @@ public class ProductoRestController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	
-
-	
 	
 	/*Producto producto = productoService.findById(id);
 			String nombreFoto = producto.getFoto();

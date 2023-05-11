@@ -31,6 +31,7 @@ import { UserComponent } from './user/user.component';
 import { AdminGuard } from './admin/admin.guard';
 import { UserGuard } from './user/user.guard';
 import { ServerErrorInterceptor } from './errors/ErrorInterceptor';
+import { User } from './signup/user';
 
 registerLocaleData(localeES, 'es')
 const routes: Routes = [

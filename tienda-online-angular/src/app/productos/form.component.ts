@@ -30,6 +30,7 @@ export class FormComponent {
     descripcion:"",
     precio:0,
     vendedor:new User,
+    cantidad:0,
   }
   date = new FormControl(moment([2017, 0, 1]));
 

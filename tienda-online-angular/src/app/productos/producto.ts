@@ -8,5 +8,5 @@ export class Producto{
     descripcion:string="";
     precio:number=0;
     vendedor:User;
-
+    cantidad:number;
 }

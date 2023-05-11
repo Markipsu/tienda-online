@@ -17,6 +17,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
@@ -55,8 +58,16 @@ public class Usuario implements UserDetails{
     
     private boolean enabled = true;
     
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "vendedor")
-	private Set<VentaUsuario> ventasVendedores;
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "comprador")
+    @JsonIgnore
+    private Set<Venta> factura;
+    
+    @ManyToMany
+    @JoinTable(
+    		  name = "venta_usuario", 
+    		  joinColumns = @JoinColumn(name = "vendedor_id"), 
+    		  inverseJoinColumns = @JoinColumn(name = "venta_id"))
+	private Set<Venta> ventas;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario")
     @JsonIgnore
@@ -170,10 +181,22 @@ public class Usuario implements UserDetails{
 	public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
 		this.usuarioRoles = usuarioRoles;
 	}
+	
+	
+
+	public Set<Venta> getFactura() {
+		return factura;
+	}
+
+	public void setFactura(Set<Venta> factura) {
+		this.factura = factura;
+	}
+
 
 	public Usuario(Long id, String nombre, String email, String password, String direccion, String ciudad,
-			Integer codigoPostal, String pais, @NotEmpty String username, boolean enabled,
-			Set<UsuarioRol> usuarioRoles) {
+			Integer codigoPostal, String pais, @NotEmpty String username, boolean enabled, Set<Venta> factura,
+			Set<Venta> ventas, Set<UsuarioRol> usuarioRoles) {
+		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.email = email;
@@ -184,10 +207,20 @@ public class Usuario implements UserDetails{
 		this.pais = pais;
 		this.username = username;
 		this.enabled = enabled;
+		this.factura = factura;
+		this.ventas = ventas;
+		this.usuarioRoles = usuarioRoles;
 	}
 
-	public Usuario() {
+	public Set<Venta> getVentas() {
+		return ventas;
 	}
+
+	public void setVentas(Set<Venta> ventas) {
+		this.ventas = ventas;
+	}
+
+	public Usuario() {}
 
  
 }

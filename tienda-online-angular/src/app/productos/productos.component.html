@@ -19,6 +19,7 @@
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Precio</th>
+                    <th>Cantidad</th>
                     <th>Vendedor</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
@@ -38,6 +39,7 @@
                     <td>{{producto.nombre}}</td>
                     <td>{{producto.descripcion}}</td>
                     <td>{{producto.precio}}</td>
+                    <td>{{producto.cantidad}}</td>
                     <td>{{producto.vendedor.username}}</td>
                     <td>
                         <button class="btn btn-primary" *ngIf="login.isLoggedIn()&&producto.vendedor.username==login.getUser().username" [routerLink]="['/productos/form',producto.id]">Editar</button>
