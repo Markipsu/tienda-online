@@ -1,0 +1,31 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">ventas</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Lista de Ventas</h5>
+        <ng-template #noTable>
+            <div class="alert alert-info">
+                No hay registros
+            </div>
+        </ng-template>
+        <table class="table table-bordered table-striped" *ngIf="user.carrito.length>0 else noTable">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Precio</th>
+                    <th>Vendedor</th>
+                    <th>cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--(click)="abrirModal(producto)"-->
+                <tr *ngFor="let carr of user.carrito">
+                    <td>{{carr.nombre}}</td>
+                    <td>{{carr.precio}}</td>
+                    <td>{{carr.vendedor.username}}</td>
+                    <td>{{carr.cantidad}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

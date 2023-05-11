@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.spring.trabajo.models.entity.Producto;
 import es.spring.trabajo.models.entity.Venta;
 import es.spring.trabajo.models.services.ProductoService;
+import es.spring.trabajo.models.services.UsuarioService;
 import es.spring.trabajo.models.services.VentaService;
 import jakarta.validation.Valid;
 
@@ -43,35 +44,20 @@ public class VentaController {
 
 	@Autowired
 	private VentaService ventaService;
-
-	@GetMapping("/ventas")
-	public List<Venta> index() {
-		return ventaService.findAll();
-	}
+	
+	@Autowired
+	private UsuarioService usuarioService;
 
 	@GetMapping("/ventas/page/{page}")
 	public Page<Venta> index(@PathVariable Integer page) {
 		return ventaService.findAll(PageRequest.of(page, 5));
 	}
 
-	@GetMapping("/ventas/{id}")
-	public ResponseEntity<?> show(@PathVariable Long id) {
-		Map<String, Object> response = new HashMap<>();
-		Venta ve = null;
-		try {
-			ve = ventaService.findById(id);
-		} catch (DataAccessException e) {
-			response.put("mensaje", "Error en la bbdd al listar");
-			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		if (ve == null) {
-			response.put("mensaje", "El producto Id: ".concat(id.toString().concat(" no existe")));
-			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(ve, HttpStatus.OK);
+	@GetMapping("/usuarios/{id}/ventas/page/{page}")
+	public Page<Venta> listaVentasPorUsuario(@PathVariable Long id ,@PathVariable Integer page){
+		return ventaService.findByUsuario(usuarioService.findById(id), PageRequest.of(page,5));
 	}
-
+	
 	@PostMapping("/ventas")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseEntity<?> create(@Valid @RequestBody Venta venta, BindingResult result) {

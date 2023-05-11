@@ -11,15 +11,11 @@ import es.spring.trabajo.models.entity.Usuario;
 import es.spring.trabajo.models.entity.Venta;
 
 public interface VentaService {
-
-	public List<Venta> findAll();
 	
 	public Page<Venta> findAll(Pageable page);
 
 	public Venta save(Venta venta);
 
-	public void delete(Long id);
-
-	public Venta findById(Long id);
+	public Page<Venta> findByUsuario(Usuario comprador ,Pageable page);
 
 }

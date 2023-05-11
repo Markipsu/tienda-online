@@ -1,0 +1,35 @@
+<div class="card border-primary mb-3">
+    <div class="card-header">ventas</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Lista de Ventas</h5>
+        <ng-template #noTable>
+            <div class="alert alert-info">
+                No hay registros
+            </div>
+        </ng-template>
+        <table class="table table-bordered table-striped" *ngIf="ventas.length>0 else noTable">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Precio</th>
+                    <th>Comprador</th>
+                    <th>Productos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--(click)="abrirModal(producto)"-->
+                <tr *ngFor="let venta of ventas">
+                    <td>{{venta.fechaVenta}}</td>
+                    <td>{{venta.precioTotal}}</td>
+                    <td>{{venta.comprador.username}}</td>
+                    <td>
+                        <span class="btn" href="" [routerLink]="['/producto/',producto.id]" *ngFor="let producto of venta.productos">
+                            {{producto.nombre}} 
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <paginator-nav *ngIf="paginator" [paginator]="paginator"></paginator-nav>
+    </div>
+</div>

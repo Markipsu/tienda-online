@@ -22,30 +22,22 @@ public class VentaServiceImpl implements VentaService {
 	@Autowired
 	private VentaRepository ventaRepository;
 
-	@Override
-	public List<Venta> findAll() {
-		return ventaRepository.findAll();
-	}
 
 	@Override
 	public Venta save(Venta venta) {
 		return ventaRepository.save(venta);
 	}
 
-	@Override
-	public void delete(Long id) {
-		ventaRepository.deleteById(id);
-
-	}
-
-	@Override
-	public Venta findById(Long id) {
-		return ventaRepository.findById(id).orElse(null);
-	}
 
 	@Override
 	public Page<Venta> findAll(Pageable page) {
 		return ventaRepository.findAll(page);
+	}
+
+
+	@Override
+	public Page<Venta> findByUsuario(Usuario comprador, Pageable page) {
+		return ventaRepository.findByComprador(comprador, page);
 	}
 
 

@@ -47,11 +47,8 @@ public class Producto {
 	@JoinColumn(name = "vendedor_id")
 	private Usuario vendedor;
 	
-	@ManyToMany
-    @JoinTable(
-    		  name = "venta_producto", 
-    		  joinColumns = @JoinColumn(name = "producto_id"), 
-    		  inverseJoinColumns = @JoinColumn(name = "venta_id"))
+	@ManyToMany(mappedBy = "productos")
+	@JsonIgnore
     private Set<Venta> ventas = new HashSet<>();
 
 	public Long getId() {

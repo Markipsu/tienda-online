@@ -49,4 +49,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioRepository.deleteById(usuarioId);
     }
 
+	@Override
+	public Usuario findById(Long id) {
+		return usuarioRepository.findById(id).orElse(null);
+	}
+
 }

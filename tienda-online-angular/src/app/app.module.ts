@@ -32,6 +32,9 @@ import { AdminGuard } from './admin/admin.guard';
 import { UserGuard } from './user/user.guard';
 import { ServerErrorInterceptor } from './errors/ErrorInterceptor';
 import { User } from './signup/user';
+import { CarritoComponent } from './carrito/carrito.component';
+import { VentasComponent } from './ventas/ventas.component';
+import { VentaService } from './ventas/ventas.service';
 
 registerLocaleData(localeES, 'es')
 const routes: Routes = [
@@ -42,6 +45,8 @@ const routes: Routes = [
   { path: 'productos/form/:id', component: FormComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'usuarios/:id/ventas', component: VentasComponent },
+  { path: 'usuarios/:id/carrito', component: CarritoComponent },
   { path: 'admin', component: AdminComponent,canActivate:[AdminGuard]},
   { path: 'user-dashboard', component: UserComponent,canActivate:[UserGuard]},
 ]
@@ -59,6 +64,8 @@ const routes: Routes = [
     LoginComponent,
     AdminComponent,
     UserComponent,
+    CarritoComponent,
+    VentasComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +85,7 @@ const routes: Routes = [
   ],
   providers: [
     ProductoService,
+    VentaService,
     authInterceptorProviders,
     { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true }
   ],

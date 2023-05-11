@@ -23,7 +23,7 @@ export class DetalleComponent {
     
   }
 
-  /*seleccionarFoto(event) {
+  seleccionarFoto(event) {
     this.fotoSeleccionada = event.target.files[0];
     this.progreso = 0;
     if (this.fotoSeleccionada.type.indexOf('image') < 0) {
@@ -55,5 +55,5 @@ export class DetalleComponent {
     this.modalService.cerrarModal();
     this.fotoSeleccionada=null;
     this.progreso=0;
-  }*/
+  }
 }

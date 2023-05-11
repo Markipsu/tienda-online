@@ -26,16 +26,18 @@
           </li>
           
         </ul>
-        <ul class="navbar-nav me-2 mb-auto mb-lg-0">
-          <li class="nav-item dropdown" *ngIf="loginService.isLoggedIn()">
+        <ul class="navbar-nav me-2 mb-auto mb-lg-0" *ngIf="loginService.isLoggedIn()&& loginService.getToken()!=null">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Bienvenido 
+             Bienvenido {{user.username}}
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item btn"  [routerLink]="['/usuarios/',user.id,'ventas']">Mis compras</a></li>
+              <li><a class="btn dropdown-item btn" (click)="carrito()">Mi carrito</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="btn dropdown-item" (click)="logout()">Cerrar Sesion</a></li>
+              <li><a class="btn dropdown-item btn" (click)="logout()">Cerrar Sesion</a></li>
+              
             </ul>
           </li>
         </ul>

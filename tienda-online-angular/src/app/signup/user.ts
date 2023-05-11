@@ -1,4 +1,7 @@
+import { Producto } from "../productos/producto";
+
 export class User{
+    id;
     nombre:"";
     email:'';
     password:'';
@@ -7,4 +10,5 @@ export class User{
     codigoPostal:0;
     pais:'';
     username:'';
+    carrito:Producto[]
 }

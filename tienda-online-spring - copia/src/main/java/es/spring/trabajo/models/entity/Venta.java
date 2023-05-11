@@ -18,6 +18,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -44,8 +45,16 @@ public class Venta {
 	@JoinColumn(name = "comprador_id")
 	private Usuario comprador;
 	
-	@ManyToMany(mappedBy = "ventas")
-	@JsonIgnore
+	@ManyToMany
+	@JoinTable(
+   		  name = "venta_producto", 
+   		  joinColumns = @JoinColumn(name = "venta_id"), 
+   		  inverseJoinColumns = @JoinColumn(name = "producto_id"))
     private Set<Producto> productos;
+	
+	@PrePersist
+	public void prePersist() {
+		fechaVenta= new Date();
+	}
 
 }

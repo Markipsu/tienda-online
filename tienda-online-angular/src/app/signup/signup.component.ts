@@ -16,6 +16,7 @@ export class SignupComponent {
   errores:String[]=[]
 
   user:User={
+    id:0,
     nombre:"",
     email:'',
     password:'',
@@ -24,6 +25,7 @@ export class SignupComponent {
     codigoPostal:0,
     pais:'',
     username:'',
+    carrito:[]
   }
 
   constructor(private userService: UserService,

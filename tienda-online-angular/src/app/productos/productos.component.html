@@ -47,6 +47,9 @@
                     <td>
                         <button class="btn btn-danger" *ngIf="login.isLoggedIn()&&producto.vendedor.username==login.getUser().username" (click)="delete(producto)">Eliminar</button>
                     </td>
+                    <td>
+                        <button class="btn btn-primary" *ngIf="login.isLoggedIn()&&producto.vendedor.username!=login.getUser().username" (click)="addCarrito(producto)">Añadir carrito</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -6,6 +6,8 @@ import { tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from './detalle/modal.service';
 import { LoginService } from '../login/login.service';
+import { CarritoService } from '../carrito/carrito.service';
+import { User } from '../signup/user';
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.component.html',
@@ -20,7 +22,8 @@ export class ProductosComponent {
   constructor(private productoService: ProductoService,
     private activatedRoute: ActivatedRoute,
     private modalService: ModalService,
-    public login:LoginService) { }
+    public login:LoginService,
+    private carritoService: CarritoService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -82,5 +85,9 @@ export class ProductosComponent {
     this.modalService.abrirModal();
   }
 
+
+  addCarrito(producto:Producto){
+    this.carritoService.addCarrito(producto);
+  }
   
 }
