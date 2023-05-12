@@ -10,5 +10,4 @@ export class User{
     codigoPostal:0;
     pais:'';
     username:'';
-    carrito:Producto[]
 }

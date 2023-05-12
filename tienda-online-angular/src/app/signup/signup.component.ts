@@ -25,7 +25,6 @@ export class SignupComponent {
     codigoPostal:0,
     pais:'',
     username:'',
-    carrito:[]
   }
 
   constructor(private userService: UserService,

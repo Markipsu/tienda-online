@@ -88,6 +88,7 @@ export class ProductosComponent {
 
   addCarrito(producto:Producto){
     this.carritoService.addCarrito(producto);
+    console.log(producto)
   }
   
 }

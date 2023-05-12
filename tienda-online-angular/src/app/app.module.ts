@@ -36,6 +36,7 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { VentaService } from './ventas/ventas.service';
 
+
 registerLocaleData(localeES, 'es')
 const routes: Routes = [
   { path: '', redirectTo: '/productos', pathMatch: 'full' },

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { User } from '../signup/user';
 import { CarritoService } from './carrito.service';
 import { LoginService } from '../login/login.service';
+import { Venta } from '../ventas/venta';
+import { Producto } from '../productos/producto';
 
 @Component({
   selector: 'app-carrito',
@@ -10,25 +12,36 @@ import { LoginService } from '../login/login.service';
 })
 export class CarritoComponent {
 
-  user:User={
+  venta:Venta={
     id:0,
-    nombre:"",
-    email:'',
-    password:'',
-    direccion:'',
-    ciudad:'',
-    codigoPostal:0,
-    pais:'',
-    username:'',
-    carrito:[]
-  }
+    fechaVenta:"",
+    precioTotal:0,
+    cantidadProductos:0,
+    comprador:{
+      id:0,
+      nombre:"",
+      email:'',
+      password:'',
+      direccion:'',
+      ciudad:'',
+      codigoPostal:0,
+      pais:'',
+      username:'',
+    },
+    productos:[],
+    vendedores:[]
+    }
 
   constructor(private carritoService:CarritoService,
     private login:LoginService){}
 
   ngOnInit(){
-    this.user=this.carritoService.getUser();
-    this.user.id=this.login.getUser().id;
-    console.log(this.user)
+    this.venta=this.carritoService.getVenta();
+    this.venta.comprador.id=this.login.getUser().id;
+    console.log(this.venta)
+  }
+  
+  calcular(producto:Producto){
+    console.log("T")
   }
 }

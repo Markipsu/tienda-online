@@ -22,7 +22,6 @@ export class HeaderComponent {
     codigoPostal:0,
     pais:'',
     username:'',
-    carrito:[]
   }
 
 constructor(public loginService:LoginService,
@@ -38,13 +37,7 @@ constructor(public loginService:LoginService,
     }
   }
 
-  public ventas(){
-    this.user=this.loginService.getUser();
-    this.router.navigate(['/usuarios/',this.user.id,'ventas'])
-  }
-
   public carrito(){
-    this.user=this.loginService.getUser();
     this.router.navigate(['/usuarios/',this.user.id,'carrito'])
   }
 
