@@ -23,7 +23,7 @@ import { ModalService } from './detalle/modal.service';
   ],
 })
 export class FormComponent {
-  titulo: string = "Crear usuario";
+  titulo: string = "Crear producto";
   fotoSeleccionada:File;
   progreso:number;
   errores: string[] = [];

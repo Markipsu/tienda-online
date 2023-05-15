@@ -1,6 +1,6 @@
 <detalle-producto *ngIf="productoSeleccionado" [producto]="productoSeleccionado"></detalle-producto>
 
-<div class="card border-primary mb-3">
+<div class="card border-primary m-3 gradient-custom">
     <div class="card-header">ventas</div>
     <div class="card-body text-primary">
         <h5 class="card-title">Lista de Ventas</h5>
@@ -14,7 +14,6 @@
                 <tr>
                     <th>Fecha</th>
                     <th>Precio</th>
-                    <th>Comprador</th>
                     <th>Productos</th>
                 </tr>
             </thead>
@@ -23,15 +22,14 @@
                 <tr *ngFor="let venta of ventas">
                     <td>{{venta.fechaVenta}}</td>
                     <td>{{venta.precioTotal}}</td>
-                    <td>{{venta.comprador.username}}</td>
                     <td>
-                        <a *ngFor="let producto of venta.productos" (click)="abrirModal(producto)">
-                            {{producto.vendedor.username}} </a>
+                        <a *ngFor="let producto of venta.productos">
+                             {{producto.nombre}} 
+                            </a>
                         
                     </td>
                 </tr>
             </tbody>
         </table>
-        <paginator-nav *ngIf="paginator" [paginator]="paginator"></paginator-nav>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -36,11 +36,12 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { VentaService } from './ventas/ventas.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomeComponent } from './home/home.component';
 
 
 registerLocaleData(localeES, 'es')
 const routes: Routes = [
-  { path: '', redirectTo: '/productos', pathMatch: 'full' },
+  { path: '', component:HomeComponent },
   { path: 'productos', component: ProductosComponent },
   { path: 'productos/page/:page', component: ProductosComponent },
   { path: 'productos/form', component: FormComponent },
@@ -68,6 +69,7 @@ const routes: Routes = [
     UserComponent,
     CarritoComponent,
     VentasComponent,
+    HomeComponent,
     
   ],
   imports: [

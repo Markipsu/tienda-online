@@ -16,20 +16,8 @@ private httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
   constructor(private http:HttpClient,private router:Router) { }
 
 
-  getVentas(userId:number,page:number): Observable<any>{
-    return this.http.get(this.url+"/usuarios/"+userId+"/ventas/page/"+page).pipe(
-      tap((response:any) => {
-        response.content as Venta[];
-      }),
-      map ((response:any)=>{
-        (response.content as Venta[]).map(venta=>{
-          venta.fechaVenta=formatDate(venta.fechaVenta,'EEEE dd-MMMM-yyyy','es-ES')
-          console.log(venta)
-          return venta;
-        });
-      return response;
-      })
-    );
+  getVentas(userId:number): Observable<any>{
+    return this.http.get(this.url+"/usuarios/"+userId+"/ventas");
   }
 
   create(venta:Venta):Observable<any>{

@@ -29,15 +29,10 @@ public class VentaServiceImpl implements VentaService {
 	}
 
 
-	@Override
-	public Page<Venta> findAll(Pageable page) {
-		return ventaRepository.findAll(page);
-	}
-
 
 	@Override
-	public Page<Venta> findByUsuario(Usuario comprador, Pageable page) {
-		return ventaRepository.findByComprador(comprador, page);
+	public List<Venta> findByUsuario(Usuario comprador) {
+		return ventaRepository.findByComprador(comprador);
 	}
 
 

@@ -6,6 +6,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { ProductoService } from '../productos/producto.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +32,8 @@ export class CarritoService {
     productos:[]
     }
 
-  constructor(private http:HttpClient,private router:Router) { }
+  constructor(private http:HttpClient,private router:Router,
+    private productoService:ProductoService) { }
 
   setUser(user:User) {
     this.venta.comprador= user;
@@ -65,6 +67,7 @@ export class CarritoService {
   }
 
   create(venta:Venta):Observable<any>{
+    
     return this.http.post<any>(this.url,venta,{headers:this.httpHeaders}).pipe(
       catchError(e => {
         console.log(e)

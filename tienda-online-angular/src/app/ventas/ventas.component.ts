@@ -16,7 +16,6 @@ import { ModalService } from '../productos/detalle/modal.service';
 export class VentasComponent {
 
   ventas: Venta[] = [];
-  paginator: any;
   productoSeleccionado: Producto;
 
 
@@ -28,28 +27,17 @@ export class VentasComponent {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
-      let page: string | null;
-      let pageN: number;
       let userId:number = +params.get('id');
-      page = params.get('page');
-      if (!page) {
-        pageN = 0
-      } else {
-        pageN = +page;
-      }
-      this.ventaService.getVentas(userId,pageN).pipe(
-        tap(response => {
-          response.content as Venta[];
-        })
-      ).subscribe(
+
+      this.ventaService.getVentas(userId).subscribe(
         response => {
-          this.ventas = response.content as Venta[];
-          this.paginator = response;
+          this.ventas = response as Venta[];
         }
       );
     })
   }
   abrirModal(producto: Producto) {
+    console.log(producto.id)
     this.productoSeleccionado = producto;
     this.modalService.abrirModal();
   }

@@ -60,6 +60,12 @@ export class CarritoComponent {
   }
 
   public create(): void {
+    for(var i=0;i<this.venta.productos.length;i++){
+      let p:Producto;
+      p=this.venta.productos.at(i);
+      p.cantidad = p.cantidad - this.cantidades.at(i);
+      this.productoService.update(p).subscribe();
+    }
     let observer: Observer<any> = {
       next: (json) => {
         this.router.navigate(['/productos']);

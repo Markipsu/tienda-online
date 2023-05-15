@@ -61,7 +61,7 @@ public class ProductoController {
 
 	@GetMapping("/productos/page/{page}")
 	public Page<Producto> index(@PathVariable Integer page) {
-		return productoService.findAll(PageRequest.of(page, 20));
+		return productoService.findAll(PageRequest.of(page, 5));
 	}
 
 	@GetMapping("/productos/{id}")
@@ -113,6 +113,7 @@ public class ProductoController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseEntity<?> update(@Valid @RequestBody Producto producto, BindingResult result,
 			@PathVariable Long id) {
+		System.out.println(producto.getCantidad());
 		Map<String, Object> response = new HashMap<>();
 		Producto producto2 = productoService.findById(id);
 		Producto producto3 = null;

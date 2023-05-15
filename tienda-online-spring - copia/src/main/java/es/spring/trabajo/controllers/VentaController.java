@@ -49,14 +49,10 @@ public class VentaController {
 	@Autowired
 	private UsuarioService usuarioService;
 
-	@GetMapping("/ventas/page/{page}")
-	public Page<Venta> index(@PathVariable Integer page) {
-		return ventaService.findAll(PageRequest.of(page, 5));
-	}
 
-	@GetMapping("/usuarios/{id}/ventas/page/{page}")
-	public Page<Venta> listaVentasPorUsuario(@PathVariable Long id ,@PathVariable Integer page){
-		return ventaService.findByUsuario(usuarioService.findById(id), PageRequest.of(page,5));
+	@GetMapping("/usuarios/{id}/ventas")
+	public List<Venta> listaVentasPorUsuario(@PathVariable Long id){
+		return ventaService.findByUsuario(usuarioService.findById(id));
 	}
 	
 	@PostMapping("/ventas")
@@ -74,7 +70,9 @@ public class VentaController {
 		
 		try {
 			System.out.println(venta);
-			
+			for(Producto p:venta.getProductos()) {
+				System.out.println(p);
+			}
 			venta2 = ventaService.save(venta);
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error en la bbdd al crear");

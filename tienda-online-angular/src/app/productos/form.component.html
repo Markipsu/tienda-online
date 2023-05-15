@@ -3,7 +3,7 @@
         {{error}}
     </li>
 </ul>
-<div class="card bg-dark text-white my-2">
+<div class="card my-2 gradient-custom">
     <div class="card-header">{{titulo}}</div>
     <div class="card-body">
         <form #productoForm="ngForm">
@@ -16,7 +16,7 @@
             <div class="form-group row my-2 py-2">
                 <label for="apellido" class="col-form-label col-sm-2">Descripcion</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="producto.descripcion" name="descripcion">
+                    <textarea type="text" class="form-control" [(ngModel)]="producto.descripcion" name="descripcion"></textarea>
 
                 </div>
             </div>

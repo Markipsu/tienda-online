@@ -1,5 +1,8 @@
 <detalle-producto *ngIf="productoSeleccionado" [producto]="productoSeleccionado"></detalle-producto>
-
+<body class="gradient-custom">
+    <div class="container">
+<br>
+<div class="card my-4 mx-4">
 <h4 class="mb-5"><strong>Productos más recientes</strong></h4>
         <div class="my-2 text-left">
             <button class="btn btn-rounded btn-primary" *ngIf="login.isLoggedIn()" type="button" [routerLink]="['/productos/form']">Crear
@@ -11,44 +14,32 @@
             </div>
         </ng-template>
         <table class="table table-bordered table-striped" *ngIf="productos.length>0 else noTable">
-            <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Vendedor</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
-            </thead>
             <tbody>
                 <!--(click)="abrirModal(producto)"-->
-                <tr *ngFor="let producto of productos">
+                <tr *ngFor="let producto of productos" class="justify-content-center">
                     <td>
                         <img *ngIf="producto?.imagen" src="http://localhost:8080/uploads/{{producto.imagen}}"
                             alt="{{producto.imagen}}" class="img-thumbnail rounded" 
-                            style="width: 64px; cursor: pointer;" (click)="abrirModal(producto)">
+                            style="width: 150px;height: 150px; cursor: pointer;" (click)="abrirModal(producto)">
                             <img *ngIf="!producto?.imagen" src="http://localhost:8080/images/no-user.png"
                             alt="sin foto" class="img-thumbnail rounded" 
-                            style="width: 64px; cursor: pointer;" (click)="abrirModal(producto)">
+                            style="width: 150px; height: 150px; cursor: pointer;" (click)="abrirModal(producto)">
                     </td>
-                    <td>{{producto.nombre}}</td>
-                    <td>{{producto.descripcion}}</td>
-                    <td>{{producto.precio}}</td>
-                    <td>{{producto.cantidad}} en stock</td>
-                    <td>{{producto.vendedor.username==login.getUser()?.username?"TUYO":producto.vendedor.username}}</td>
+                    <td>
+                        <p><strong>{{producto.nombre}}</strong></p>
+                        <p>{{producto.descripcion}}</p>
+                        <p>{{producto.precio}}€ - {{producto.cantidad}} en stock</p>
+                        <p>Vendido por {{producto.vendedor.username==login.getUser()?.username?"TUYO":producto.vendedor.username}}</p>
+                    </td>
                     <td>
                         <button class="btn btn-primary" (click)="abrirModal(producto)">Ver detalles</button>
-                    </td>
-                    <td>
                         <button class="btn btn-danger" *ngIf="login.isLoggedIn()&&producto.vendedor.username==login.getUser().username" (click)="delete(producto)">Eliminar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
         <paginator-nav *ngIf="paginator" [paginator]="paginator"></paginator-nav>
-
-
-
+    </div>
+    <br>
+    </body>

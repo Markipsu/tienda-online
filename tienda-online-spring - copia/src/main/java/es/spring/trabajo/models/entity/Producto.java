@@ -131,5 +131,12 @@ public class Producto {
 	}
 
 	public Producto() {}
+
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", descripcion=" + descripcion
+				+ ", precio=" + precio + ", cantidad=" + cantidad + ", vendedor=" + vendedor + ", ventas=" + ventas
+				+ "]";
+	}
 	
 }

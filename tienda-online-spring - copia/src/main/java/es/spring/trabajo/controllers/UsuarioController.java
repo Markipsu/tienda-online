@@ -1,9 +1,14 @@
 package es.spring.trabajo.controllers;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,8 +36,11 @@ public class UsuarioController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping
-    public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception{
-        Set<UsuarioRol> usuarioRoles = new HashSet<>();
+    public ResponseEntity<?> guardarUsuario(@RequestBody Usuario usuario) throws Exception{
+    	Map<String, Object> response = new HashMap<>();
+    	Set<UsuarioRol> usuarioRoles;
+    	try {
+        usuarioRoles = new HashSet<>();
         usuario.setPassword(this.bCryptPasswordEncoder.encode(usuario.getPassword()));
         Rol rol = new Rol();
         rol.setId(2L);
@@ -43,7 +51,12 @@ public class UsuarioController {
         usuarioRol.setRol(rol);
 
         usuarioRoles.add(usuarioRol);
-        return usuarioService.guardarUsuario(usuario,usuarioRoles);
+    	} catch (DataAccessException e) {
+			response.put("mensaje", "Error en la bbdd al listar");
+			response.put("errors", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+        return new ResponseEntity<>(usuarioService.guardarUsuario(usuario,usuarioRoles),HttpStatus.CREATED);
     }
 
 

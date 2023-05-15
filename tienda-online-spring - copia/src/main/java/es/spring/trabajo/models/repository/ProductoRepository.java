@@ -12,7 +12,4 @@ import es.spring.trabajo.models.entity.Usuario;
 import es.spring.trabajo.models.entity.Venta;
 
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
-	@Query("select p from Producto as p where vendedor.id!=?1")
-	public Page<Producto> findByVendedor(Long id,Pageable page);
-	
 }
