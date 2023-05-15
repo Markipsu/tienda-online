@@ -75,13 +75,16 @@ private httpHeaders=new HttpHeaders({'Content-Type':'application/json'})
     )
   }
 
-  subirFoto(archivo:File, id): Observable<HttpEvent<{}>>{
+  subirFoto(archivo:File, id){
     let formData= new FormData();
     formData.append("archivo",archivo);
     formData.append("id",id);
-    const req=new HttpRequest('POST',`${this.url}/upload`,formData,{
-      reportProgress:true
-    })
-    return this.http.request(req);
+    return this.http.post(`${this.url}/upload`,formData).pipe(
+      map((response:any)=>response.producto as Producto),
+      catchError(e => {
+        swal.fire('Error al subir','Error al subir la foto','error')
+        return throwError(()=>e);
+      })
+    );
   }
 }

@@ -37,9 +37,6 @@ public class Venta {
 	@Column(name = "fecha_venta")
 	private Date fechaVenta;
 	
-	@ManyToMany(mappedBy = "ventas")
-	@JsonIgnore
-	private Set<Usuario> vendedores;
 	
 	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "comprador_id")

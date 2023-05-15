@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -72,6 +73,8 @@ public class VentaController {
 		}
 		
 		try {
+			System.out.println(venta);
+			
 			venta2 = ventaService.save(venta);
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error en la bbdd al crear");

@@ -1,0 +1,8 @@
+
+  .row{
+    float: left;
+    margin: 0px;
+  }
+  .row:nth-child(even){
+    margin-right: 0px;
+  }

@@ -35,6 +35,7 @@ import { User } from './signup/user';
 import { CarritoComponent } from './carrito/carrito.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { VentaService } from './ventas/ventas.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 registerLocaleData(localeES, 'es')
@@ -67,6 +68,7 @@ const routes: Routes = [
     UserComponent,
     CarritoComponent,
     VentasComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -83,6 +85,7 @@ const routes: Routes = [
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
+    FontAwesomeModule,
   ],
   providers: [
     ProductoService,

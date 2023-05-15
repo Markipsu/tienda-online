@@ -1,3 +1,5 @@
+<detalle-producto *ngIf="productoSeleccionado" [producto]="productoSeleccionado"></detalle-producto>
+
 <div class="card border-primary mb-3">
     <div class="card-header">ventas</div>
     <div class="card-body text-primary">
@@ -17,15 +19,15 @@
                 </tr>
             </thead>
             <tbody>
-                <!--(click)="abrirModal(producto)"-->
+                <!---->
                 <tr *ngFor="let venta of ventas">
                     <td>{{venta.fechaVenta}}</td>
                     <td>{{venta.precioTotal}}</td>
                     <td>{{venta.comprador.username}}</td>
                     <td>
-                        <span class="btn" href="" [routerLink]="['/producto/',producto.id]" *ngFor="let producto of venta.productos">
-                            {{producto.nombre}} 
-                        </span>
+                        <a *ngFor="let producto of venta.productos" (click)="abrirModal(producto)">
+                            {{producto.vendedor.username}} </a>
+                        
                     </td>
                 </tr>
             </tbody>

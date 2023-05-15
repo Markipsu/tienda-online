@@ -43,6 +43,6 @@ constructor(public loginService:LoginService,
 
   public logout(){
     this.loginService.logout();
-    this.router.navigate(['/'])
+    this.router.navigate(['/productos'])
   }
 }

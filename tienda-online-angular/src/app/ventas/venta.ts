@@ -5,8 +5,6 @@ export class Venta{
     id:number;
     fechaVenta:string;
     precioTotal:number;
-    cantidadProductos:number;
     comprador:User
     productos:Producto[]
-    vendedores:User[]
 }

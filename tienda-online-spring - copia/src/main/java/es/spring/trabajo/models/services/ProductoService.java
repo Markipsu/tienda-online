@@ -14,7 +14,6 @@ public interface ProductoService {
 	public List<Producto> findAll();
 	
 	public Page<Producto> findAll(Pageable page);
-
 	public Producto save(Producto producto);
 
 	public void delete(Long id);

@@ -4,23 +4,37 @@ import { ProductoService } from '../producto.service';
 import Swal from 'sweetalert2';
 import { HttpEventType } from '@angular/common/http';
 import { ModalService } from './modal.service';
+import { ActivatedRoute } from '@angular/router';
+import { CarritoService } from 'src/app/carrito/carrito.service';
+import { LoginService } from 'src/app/login/login.service';
 @Component({
   selector: 'detalle-producto',
   templateUrl: './detalle.component.html',
   styleUrls: ['./detalle.component.css']
 })
 export class DetalleComponent {
-
+  cantidad:number=1;
   @Input() producto: Producto;
   fotoSeleccionada: File;
   titulo = "Foto";
   progreso: number;
+  
   constructor(private productoService: ProductoService,
-            public modalService:ModalService) {
+            public modalService:ModalService,
+            private activatedRoute:ActivatedRoute,
+            private carritoService:CarritoService,
+            public login:LoginService) {
   }
 
   ngOnInit() {
-    
+    this.activatedRoute.paramMap.subscribe(params=>{
+      let id = +params.get('id');
+      if(id){
+        this.productoService.getProducto(id).subscribe(producto=>{
+          this.producto=producto;
+        });
+      }
+    })
   }
 
   seleccionarFoto(event) {
@@ -37,18 +51,13 @@ export class DetalleComponent {
       Swal.fire('Debe seleccionar una foto', `debe seleccionar una foto`, 'error')
     } else {
       this.productoService.subirFoto(this.fotoSeleccionada, this.producto.id).subscribe(
-        event => {
-          if (event.type === HttpEventType.UploadProgress) {
-            this.progreso = Math.round((event.loaded / event.total) * 100);
-          } else if (event.type === HttpEventType.Response) {
-            let response: any = event.body;
-            this.producto = response.producto as Producto;
-            this.modalService.notificarUpload.emit(this.producto);
-            Swal.fire('La foto se ha subido correctamente', response.mensaje, 'success');
-          }
+        producto =>{
+          this.producto=producto;
+          Swal.fire('La foto se ha subido Correctamente', `Todo perfecto : ${this.producto.imagen}`, 'success');
         }
       );
     }
+    window.location.reload();
   }
 
   cerrarModal(){
@@ -56,4 +65,11 @@ export class DetalleComponent {
     this.fotoSeleccionada=null;
     this.progreso=0;
   }
+
+  
+  addCarrito(){
+    this.carritoService.addCarrito(this.producto,this.cantidad);
+  }
+
+  
 }

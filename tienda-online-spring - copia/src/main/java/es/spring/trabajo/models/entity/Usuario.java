@@ -61,13 +61,6 @@ public class Usuario implements UserDetails{
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "comprador")
     @JsonIgnore
     private Set<Venta> factura;
-    
-    @ManyToMany
-    @JoinTable(
-    		  name = "venta_usuario", 
-    		  joinColumns = @JoinColumn(name = "vendedor_id"), 
-    		  inverseJoinColumns = @JoinColumn(name = "venta_id"))
-	private Set<Venta> ventas;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario")
     @JsonIgnore
@@ -195,7 +188,7 @@ public class Usuario implements UserDetails{
 
 	public Usuario(Long id, String nombre, String email, String password, String direccion, String ciudad,
 			Integer codigoPostal, String pais, @NotEmpty String username, boolean enabled, Set<Venta> factura,
-			Set<Venta> ventas, Set<UsuarioRol> usuarioRoles) {
+			 Set<UsuarioRol> usuarioRoles) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -208,17 +201,10 @@ public class Usuario implements UserDetails{
 		this.username = username;
 		this.enabled = enabled;
 		this.factura = factura;
-		this.ventas = ventas;
 		this.usuarioRoles = usuarioRoles;
 	}
 
-	public Set<Venta> getVentas() {
-		return ventas;
-	}
-
-	public void setVentas(Set<Venta> ventas) {
-		this.ventas = ventas;
-	}
+	
 
 	public Usuario() {}
 

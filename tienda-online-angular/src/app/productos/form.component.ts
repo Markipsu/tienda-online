@@ -10,6 +10,8 @@ import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { User } from '../signup/user';
 import { LoginService } from '../login/login.service';
+import { HttpEventType } from '@angular/common/http';
+import { ModalService } from './detalle/modal.service';
 
 @Component({
   selector: 'app-form',
@@ -22,6 +24,8 @@ import { LoginService } from '../login/login.service';
 })
 export class FormComponent {
   titulo: string = "Crear usuario";
+  fotoSeleccionada:File;
+  progreso:number;
   errores: string[] = [];
   producto:Producto={
     id: 0,
@@ -37,7 +41,8 @@ export class FormComponent {
   constructor(private productoService: ProductoService,
     private router: Router,
     private activateRoute: ActivatedRoute,
-    private login:LoginService) { }
+    private login:LoginService,
+    private modalService:ModalService) { }
 
   ngOnInit() {
     this.cargarProducto();
@@ -47,6 +52,7 @@ export class FormComponent {
     let observer: Observer<any> = {
       next: (json) => {
         this.router.navigate(['/productos']);
+        this.modalService.abrirModal();
         swal.fire('Nuevo producto', `producto ${json.producto.nombre} creado con éxito!`, 'success')
       },
       error: (err) => {

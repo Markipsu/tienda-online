@@ -5,8 +5,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title">{{titulo}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        ></button>
-                        <!--(click)="cerrarModal()"-->
+                        (click)="cerrarModal()"></button>
                 </div>
                 <div class="modal-body">
                     <div class="container">
@@ -18,12 +17,12 @@
                                     <li class="list-group-item">{{producto.precio}}</li>
                                     <li class="list-group-item">{{producto.vendedor.username}}</li>
                                 </ul>
-                                <!--(change)="seleccionarFoto($event)" (click)="subirFoto()" -->
-                                <div class="input-group mb-3">
-                                    <input type="file" class="form-control"
-                                        id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
-                                        aria-label="Upload">
-                                    <button [disabled]="!fotoSeleccionada"
+                                <!-- (click)="subirFoto()" -->
+                                <div class="input-group mb-3" *ngIf="login.isLoggedIn()&&producto.vendedor.username==login.getUser().username">
+                                    <input type="file" class="form-control" id="inputGroupFile04"
+                                        aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+                                        (change)="seleccionarFoto($event)">
+                                    <button [disabled]="!fotoSeleccionada" (click)="subirFoto()"
                                         class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Subir
                                         Foto</button>
                                 </div>
@@ -36,15 +35,26 @@
                                 </div>
                             </div>
                             <div class="col-sm">
-                                <img *ngIf="producto?.imagen" src="http://localhost:8080/api/uploads/img/{{producto.imagen}}"
+                                <img *ngIf="producto?.imagen" src="http://localhost:8080/uploads/{{producto.imagen}}"
                                     alt="{{producto.imagen}}" class="img-thumbnail rounded">
+                            </div>
+                            <div *ngIf="login.isLoggedIn()&&producto.vendedor.username!=login.getUser().username">
+                                <input type="number" min="1" [max]="producto.cantidad" [(ngModel)]="cantidad">
+                                <button class="btn btn-primary"
+                                   
+                                    (click)="addCarrito()">Añadir carrito</button>
+                                    
+                            </div>
+                            <div *ngIf="login.isLoggedIn()&&producto.vendedor.username==login.getUser().username"> 
+                                <button class="btn btn-primary"  [routerLink]="['/productos/form',producto.id]">Editar</button>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                        >Close</button><!--(click)="cerrarModal()"-->
+                        (click)="cerrarModal()">Close</button><!--(click)="cerrarModal()"-->
                 </div>
             </div>
         </div>

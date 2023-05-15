@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../login/login.service';
 import { Venta } from './venta';
 import { VentaService } from './ventas.service';
+import { Producto } from '../productos/producto';
+import { ModalService } from '../productos/detalle/modal.service';
 @Component({
   selector: 'app-ventas',
   templateUrl: './ventas.component.html',
@@ -15,11 +17,14 @@ export class VentasComponent {
 
   ventas: Venta[] = [];
   paginator: any;
+  productoSeleccionado: Producto;
+
 
   constructor(
     private ventaService: VentaService,
     private activatedRoute: ActivatedRoute,
-    public login:LoginService) { }
+    public login:LoginService,
+    private modalService:ModalService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
@@ -44,6 +49,9 @@ export class VentasComponent {
       );
     })
   }
-
+  abrirModal(producto: Producto) {
+    this.productoSeleccionado = producto;
+    this.modalService.abrirModal();
+  }
   
 }
