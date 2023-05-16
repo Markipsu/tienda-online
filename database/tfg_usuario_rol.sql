@@ -31,7 +31,7 @@ CREATE TABLE `usuario_rol` (
   KEY `FKoy2l8ky4vnjbh9vli3h3bmr9i` (`id_usuario`),
   CONSTRAINT `FKftktpda4tym4fx0na5qjnc6ff` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FKoy2l8ky4vnjbh9vli3h3bmr9i` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `usuario_rol` (
 
 LOCK TABLES `usuario_rol` WRITE;
 /*!40000 ALTER TABLE `usuario_rol` DISABLE KEYS */;
-INSERT INTO `usuario_rol` VALUES (2,2,2),(3,2,3),(4,2,4),(5,2,5),(6,2,6),(7,2,16);
+INSERT INTO `usuario_rol` VALUES (11,2,20),(12,2,21),(13,2,22);
 /*!40000 ALTER TABLE `usuario_rol` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-15 17:01:01
+-- Dump completed on 2023-05-16 11:07:35

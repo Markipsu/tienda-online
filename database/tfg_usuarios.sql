@@ -35,7 +35,7 @@ CREATE TABLE `usuarios` (
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_m2dvbwfge291euvmk6vkkocao` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (2,'fwafaffwa',12131,'fafwafwa','vav@avav',_binary '','Marcos1','España','$2a$10$LCpbDHk9.knB1avL/kSn8utQTNq5cFvZhg6fftprB46jo0etYDKUm','marcos'),(3,'fwafaffwa',12131,'fafwafwa','vav@avav',_binary '','Marcos1','España','$2a$10$tySjj6K9b0yZqTkB1woIue/LqbXc80BmQ5bBS7XHjNG5ppi34AM8O','marcos1'),(4,'fwafaffwa',12131,'fafwafwa','vav@avav',_binary '','Marcos1','España','$2a$10$FPcjNiTtM4ztadOTrwOYD.YxUaXnL.d3/WNqIFAKn9v.rZdtHaPUa','marcos3'),(5,'fwafaffwa',12131,'fafwafwa','mar@cos',_binary '','dawd','España','$2a$10$A/ZC4LathOVj/abEp0AjIORI18Mp2Dpj1IxXx18xNcV3uB9zGSs9C','marcos32'),(6,'pepe',28000,'pepepe','pepe@gmail.com',_binary '','pepe','pepe','$2a$10$LzKMH1.4GIR4GVj0WsjtUOftNLlKzJNczmqmQ5nmtpdghxtobCz36','pepe'),(15,'fwafaffwa',12131,'fafwafwa','vav@avav',_binary '','Marcos1','España','$2a$10$LCpbDHk9.knB1avL/kSn8utQTNq5cFvZhg6fftprB46jo0etYDKUm','marcos4'),(16,'fwafaffwa',12131,'fafwafwa','vav@avav',_binary '','Marcos1','España','$2a$10$tnkgfVaXXw1768iw7RGaBuEc2N.yGXEcTTxF8BErJYBBWI7BC4TYC','marcos33');
+INSERT INTO `usuarios` VALUES (20,'Madrid',28880,'Madrid','marcos@gmail.com',_binary '','marcos','España','$2a$10$hwpemzVajOyUD0Z0dIs.8Oeurx8Y9Tfb1O6sqbRqRKWk3zKUUzOfy','marcos'),(21,'Madrid',28343,'Madrid','david@gmail.com',_binary '','david','España','$2a$10$ef86CZXMkdEUQnr0rCHRbexFbYles2x1cgIDfjogypfiStaadlzKu','david'),(22,'Madrid',28888,'Madrid','erick@gmail.com',_binary '','erick','España','$2a$10$xJALxs8F4xzPB/LsyqVwUedw80x1S0YW3ULM8J34703BokZ99PNqa','erick');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-15 17:01:00
+-- Dump completed on 2023-05-16 11:07:35

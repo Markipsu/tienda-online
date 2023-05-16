@@ -32,7 +32,7 @@ CREATE TABLE `productos` (
   `cantidad` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fkvendedorid_idx` (`vendedor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'dwadwa','5f8bf685-0029-4760-8960-e05c4d9e3bee_logo.png','dwad',1,2,1),(2,'dawda','dc338ea4-9ef7-485e-9c33-c64896ce52b0_logo.png','Marcos1',0,2,1),(4,'','69c25223-7d8d-4f90-bb40-cf5286a378a9_logo.png','Marcos1',0,2,1),(5,'a','4a163c8f-42b9-4b87-a3b7-10720ffcaea5_SecurityAndMaintenance_Alert.png','Marcos1',2,2,23),(10,'dawda','f03dd94a-9df9-417c-bdaa-8292468d12d2_SecurityAndMaintenance_Alert.png','Marcos1',2,3,23),(11,'dawda','','Marcos1',2,3,313),(12,'','','Marcos1',0,3,0),(13,'dawda','','Marcos1',2,3,23),(14,'dwda','','dwadawd',2,3,23);
+INSERT INTO `productos` VALUES (18,'Juego de Red Dead Redemption 2 para PC','970ab133-661f-4bf3-9e0d-4b67e2c7ab7a_red-dead-redemption-2-buttonjpg-f9ad35.jpg','Red Dead Redemption 2',49.99,20,10),(19,'Juego de Days Gone para PlayStation 4','0d9f2687-2893-4b36-81f2-d362df61e4d1_days-gone_tcm1.128.webp','Days Gone',59.99,20,11),(20,'Juego de The Legend of Zelda - Tears of The Kingdom para Nintendo Switch','e8277e6a-97bd-4f46-acf3-90e3dbc7267b_81zlBoheYhL._AC_SL1500_.jpg','The Legend of Zelda - Tears of The Kingdom',70,20,12),(21,'Juego Fifa 23 para PlayStation 4','4a29a9af-5573-44e7-8e73-3443020eb6e5_717PlYzBroL._AC_SL1500_.jpg','Fifa 23',55,21,23),(22,'Juego de Pokémon Escarlata para Nintendo Switch','db3f4e13-7fb5-49ab-89b2-8963849b56ba_818tEHWyTlL._AC_SL1500_.jpg','Pokémon Escarlata',69.99,21,5),(23,'Juego de Resident Evil 4 para PlayStation 5 ','44b7cb50-def0-4ec2-9dfd-94bd21d6ed8e_71X0kpkEnML._AC_SL1500_.jpg','Resident Evil',45.99,21,35);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-15 17:01:00
+-- Dump completed on 2023-05-16 11:07:35
