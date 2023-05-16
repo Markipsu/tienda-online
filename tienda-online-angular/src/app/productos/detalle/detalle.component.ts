@@ -68,6 +68,7 @@ export class DetalleComponent {
 
   
   addCarrito(){
+    Swal.fire('Producto añadido al carrito',`${this.producto.nombre} añadido a tu carrito`,'success');
     this.carritoService.addCarrito(this.producto,this.cantidad);
   }
 

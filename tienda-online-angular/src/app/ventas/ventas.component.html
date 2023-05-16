@@ -2,8 +2,11 @@
 
 <div class="card border-primary m-3 gradient-custom">
     <div class="card-header">ventas</div>
-    <div class="card-body text-primary">
-        <h5 class="card-title">Lista de Ventas</h5>
+    <div class="card-body">
+        <h2 class="card-title">Lista de Ventas</h2>
+        <button class="btn btn-primary" [routerLink]="'/productos'">Ir a productos</button>
+        <br>
+        <br>
         <ng-template #noTable>
             <div class="alert alert-info">
                 No hay registros
@@ -23,9 +26,9 @@
                     <td>{{venta.fechaVenta}}</td>
                     <td>{{venta.precioTotal}}</td>
                     <td>
-                        <a *ngFor="let producto of venta.productos">
-                             {{producto.nombre}} 
-                            </a>
+                        <p *ngFor="let producto of venta.productos">
+                             <a>{{producto.nombre}} </a>
+                        </p>
                         
                     </td>
                 </tr>
